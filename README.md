@@ -15,10 +15,12 @@ Layout: `notes.js` is the entry point, `lib/store.js` loads, saves, and searches
 2. Clone it locally and open Claude Code in the folder.
 
 ### Lesson 2 task — let Claude write the commit message
-Goal: make one focused change, then have Claude commit it with a message a reviewer could understand without opening the diff.
+**Heads-up: the tests start red on purpose.** The repo ships with one bug, your job is to fix it, then let Claude commit the fix with a clear message.
 
-1. Make one small, focused change. For example: the `search` command has a bug — it should list notes that *contain* your term, but right now it only matches the whole note exactly. Fix that, or add a short function of your own.
-2. Before committing, jot down — in `notes.md` or a scratch note — the quick commit message you'd dash off yourself in five seconds.
-3. Ask Claude: *"Stage my changes and commit them on a new branch with a good message."*
-4. Open that commit on GitHub and read Claude's message. Does it explain the change — the *why*, not just the *what* — better than your five-second version?
-5. Open the PR and submit.
+1. **Run the tests:** `npm test`. Two of the `search` tests fail — that's expected, not a broken repo.
+2. **Find the bug.** The `search` command should list every note that *contains* your term, but right now it only matches a note whose text is *exactly* the term.
+3. **Fix that line, then run `npm test` again.** All three tests should now pass. A good commit doesn't leave the build broken.
+4. **Write your own message first.** In `notes.md` (or a scratch note), jot the quick commit message you'd dash off yourself. You'll compare it to Claude's.
+5. **Let Claude commit it.** Ask: *'Run the tests to confirm they pass, then stage my changes and commit them on a new branch with a corresponding message.'*
+6. **Compare.** Open the commit on GitHub and read Claude's message. Does it explain the change — the *why*, not just the *what* — better than your quick version?
+7. Open the PR and submit.
